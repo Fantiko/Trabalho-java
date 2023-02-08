@@ -1,6 +1,12 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
+ */
 
-package pack;
-
+/**
+ *
+ * @author jvmfs
+ */
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -12,7 +18,7 @@ import java.util.Arrays;
 public class Main {
     private static final ArrayList<Cliente> clientes = new ArrayList<Cliente>();
     private static JFrame mainFrame = new JFrame("Selecione uma Opção");
-
+    
 
     public static void main(String[] args) {
         JButton btnCadastrarCliente =  new JButton("Cadastrar Cliente");
@@ -171,7 +177,7 @@ public class Main {
             }
 
         });
-
+        
         sair.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
