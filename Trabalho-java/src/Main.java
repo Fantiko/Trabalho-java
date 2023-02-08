@@ -22,11 +22,12 @@ public class Main {
     public static void main(String[] args) {
         JButton btnCadastrarCliente = new JButton("Cadastrar Cliente");
         JButton btnCadastrarFicha = new JButton("Cadastrar Ficha");
+        JButton btnListar = new JButton("Listar Clientes");
         JButton btnBuscarCliente = new JButton("Buscar Cliente");
         JButton sair = new JButton("sair");
         mainFrame.setSize(400, 400);
         mainFrame.setLocation(700, 400);
-        mainFrame.setLayout(new GridLayout(4, 1));
+        mainFrame.setLayout(new GridLayout(5, 1));
 
         btnCadastrarCliente.addActionListener(new ActionListener() {
             @Override
@@ -179,6 +180,25 @@ public class Main {
                 frameCadastrarFichas.setVisible(true);
             }
         });
+        btnListar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String mensagem = null;
+                for(Cliente c: clientes){
+                    if(mensagem ==null){
+                        mensagem  = "\n" + c.getNome();
+                    }else{
+                        mensagem  = mensagem + "\n" + c.getNome();
+                    }
+                }
+                if(mensagem == null){
+                    JOptionPane.showMessageDialog(mainFrame, "Não há clientes cadastrados!");
+                }else{
+                    JOptionPane.showMessageDialog(mainFrame, mensagem);
+                }
+                
+            }
+        });
         btnBuscarCliente.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -233,6 +253,7 @@ public class Main {
         });
         mainFrame.add(btnCadastrarCliente);
         mainFrame.add(btnCadastrarFicha);
+        mainFrame.add(btnListar);
         mainFrame.add(btnBuscarCliente);
         mainFrame.add(sair);
         mainFrame.setVisible(true);
