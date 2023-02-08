@@ -14,19 +14,19 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-
 public class Main {
+
     private static final ArrayList<Cliente> clientes = new ArrayList<Cliente>();
     private static JFrame mainFrame = new JFrame("Selecione uma Opção");
-    
 
     public static void main(String[] args) {
-        JButton btnCadastrarCliente =  new JButton("Cadastrar Cliente");
-        JButton btnCadastrarFicha =  new JButton("Cadastrar Ficha");
-        JButton btnBuscarCliente =  new JButton("Buscar Cliente");
-        JButton sair =  new JButton("sair");
-        mainFrame.setLayout(new GridLayout(4,2));
-        mainFrame.setSize(500, 500);
+        JButton btnCadastrarCliente = new JButton("Cadastrar Cliente");
+        JButton btnCadastrarFicha = new JButton("Cadastrar Ficha");
+        JButton btnBuscarCliente = new JButton("Buscar Cliente");
+        JButton sair = new JButton("sair");
+        mainFrame.setSize(400, 400);
+        mainFrame.setLocation(700, 400);
+        mainFrame.setLayout(new GridLayout(4, 1));
 
         btnCadastrarCliente.addActionListener(new ActionListener() {
             @Override
@@ -36,8 +36,9 @@ public class Main {
 
             private void cadastrarCliente() {
                 JFrame frameCadastrarCliente = new JFrame("Cadastrar Cliente");
-                frameCadastrarCliente.setLayout(new GridLayout(4,2));
-                frameCadastrarCliente.setSize(500, 500);
+                frameCadastrarCliente.setLayout(new GridLayout(5, 2));
+                frameCadastrarCliente.setSize(400, 400);
+                frameCadastrarCliente.setLocation(700, 400);
 
                 JLabel nomeLabel = new JLabel("Nome: ");
                 JTextField nomeField = new JTextField();
@@ -47,7 +48,13 @@ public class Main {
                 JTextField cpfField = new JTextField();
                 JLabel enderecoLabel = new JLabel("Endereço:");
                 JTextField enderecoField = new JTextField();
+                JButton addFicha = new JButton("Inserir Ficha");
                 JButton btnOk = new JButton("OK");
+
+                
+
+                Cliente cliente = new Cliente();
+
                 btnOk.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
@@ -55,12 +62,51 @@ public class Main {
                         int idade = Integer.parseInt(idadeField.getText());
                         String cpf = cpfField.getText();
                         String endereco = enderecoField.getText();
-
-                        Cliente cliente = new Cliente(nome,idade,cpf,endereco);
-                        clientes.add(cliente);
+                        cliente.setaTudo(nome, idade, cpf, endereco);
+                        for (int i = 0; i < clientes.size(); i++) {
+                            if (clientes.get(i).getNome().compareTo(cliente.getNome()) >= 0) {
+                                clientes.add(i, cliente);
+                                break;
+                            }
+                        }
+                        if (!clientes.contains(cliente)) {
+                            clientes.add(cliente);
+                        }
 
                         JOptionPane.showMessageDialog(frameCadastrarCliente, "Cliente cadastrado com sucesso!");
                         frameCadastrarCliente.dispose();
+                    }
+                });
+                addFicha.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        JFrame frameCadastrarFichas = new JFrame("Cadastrar Ficha");
+                        frameCadastrarFichas.setLayout(new GridLayout(4, 2));
+                        frameCadastrarFichas.setSize(400, 400);
+                        frameCadastrarFichas.setLocation(700, 400);
+
+                        JLabel nomeFichaLabel = new JLabel("Nome da Ficha: ");
+                        JTextField nomeFichaField = new JTextField();
+                        JLabel exerciciosLabel = new JLabel("Exercicios (separados por vírgula: ");
+                        JTextField exerciciosField = new JTextField();
+                        JButton btnInserir = new JButton("OK");
+                        btnInserir.addActionListener(new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+                                String nome = nomeFichaField.getText();
+                                ArrayList<String> exercicios = new ArrayList<String>(Arrays.asList(exerciciosField.getText().split(",")));
+                                Fichas ficha = new Fichas(nome, exercicios);
+
+                                cliente.getFichas().add(ficha);
+                                frameCadastrarFichas.dispose();
+                            }
+                        });
+                        frameCadastrarFichas.add(nomeFichaLabel);
+                        frameCadastrarFichas.add(nomeFichaField);
+                        frameCadastrarFichas.add(exerciciosLabel);
+                        frameCadastrarFichas.add(exerciciosField);
+                        frameCadastrarFichas.add(btnInserir);
+                        frameCadastrarFichas.setVisible(true);
                     }
                 });
                 frameCadastrarCliente.add(nomeLabel);
@@ -71,8 +117,8 @@ public class Main {
                 frameCadastrarCliente.add(cpfField);
                 frameCadastrarCliente.add(enderecoLabel);
                 frameCadastrarCliente.add(enderecoField);
+                frameCadastrarCliente.add(addFicha);
                 frameCadastrarCliente.add(btnOk);
-                frameCadastrarCliente.pack();
                 frameCadastrarCliente.setVisible(true);
             }
 
@@ -83,10 +129,11 @@ public class Main {
                 cadastrarFicha();
             }
 
-            private void cadastrarFicha(){
+            private void cadastrarFicha() {
                 JFrame frameCadastrarFichas = new JFrame("Cadastrar Ficha");
-                frameCadastrarFichas.setLayout(new GridLayout(4,2));
-                frameCadastrarFichas.setSize(500, 500);
+                frameCadastrarFichas.setLayout(new GridLayout(4, 2));
+                frameCadastrarFichas.setSize(400, 400);
+                frameCadastrarFichas.setLocation(700, 400);
 
                 JLabel clienteBuscaLabel = new JLabel("Nome do cliente: ");
                 JTextField clienteBuscaField = new JTextField();
@@ -111,10 +158,10 @@ public class Main {
                             }
                         }
 
-                        if(clienteIndex != -1){
+                        if (clienteIndex != -1) {
                             clientes.get(clienteIndex).getFichas().add(ficha);
                             JOptionPane.showMessageDialog(frameCadastrarFichas, "Fichas cadastrado com sucesso!");
-                        }else{
+                        } else {
                             //erro
                             JOptionPane.showMessageDialog(frameCadastrarFichas, "Falha ao cadastrar a ficha, individuo nao encontrado!");
                         }
@@ -129,7 +176,6 @@ public class Main {
                 frameCadastrarFichas.add(exerciciosLabel);
                 frameCadastrarFichas.add(exerciciosField);
                 frameCadastrarFichas.add(btnOk);
-                frameCadastrarFichas.pack();
                 frameCadastrarFichas.setVisible(true);
             }
         });
@@ -138,12 +184,13 @@ public class Main {
             public void actionPerformed(ActionEvent e) {
                 buscarCliente();
             }
+
             private void buscarCliente() {
                 JFrame buscarClienteFrame = new JFrame("Buscar Cliente");
                 buscarClienteFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                 buscarClienteFrame.setLayout(new FlowLayout());
-                buscarClienteFrame.setSize(500, 500);
-                buscarClienteFrame.setLocationRelativeTo(null);
+                buscarClienteFrame.setSize(400, 400);
+                buscarClienteFrame.setLocation(700, 400);
 
                 JLabel nomeLabel = new JLabel("Nome do Cliente: ");
                 JTextField nomeField = new JTextField(20);
@@ -172,15 +219,15 @@ public class Main {
                 buscarClienteFrame.add(nomeLabel);
                 buscarClienteFrame.add(nomeField);
                 buscarClienteFrame.add(okBtn);
-                buscarClienteFrame.pack();
                 buscarClienteFrame.setVisible(true);
             }
 
         });
-        
+
         sair.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                System.out.println(clientes.toString());
                 mainFrame.dispose();
             }
         });
@@ -188,7 +235,6 @@ public class Main {
         mainFrame.add(btnCadastrarFicha);
         mainFrame.add(btnBuscarCliente);
         mainFrame.add(sair);
-        mainFrame.pack();
         mainFrame.setVisible(true);
     }
 }

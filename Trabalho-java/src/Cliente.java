@@ -16,15 +16,21 @@ public class Cliente {
     private int idade;
     private String CPF;
     private String endereco;
-    private ArrayList<Fichas> fichas;
-
-    public Cliente(String nome, int idade, String CPF, String endereco) {
+    private ArrayList<Fichas> fichas = new ArrayList<Fichas>();
+    
+    //OBS: ao invez de criar um construtor que setava tudo diretamente ao ser 
+    //instanciado criei a função "setaTudo()", pois no cadastro do programa se 
+    //mostrou necessario instanciar cliente antes mesmo de haver coletado as 
+    //informaçoes de cada campo(nome,idade,etc.) para poder incluir a opção de 
+    //cadastro de ficha logo no cadastro do cliente.
+    
+    public void setaTudo(String nome, int idade, String CPF, String endereco){
         this.nome = nome;
         this.idade = idade;
         this.CPF = CPF;
         this.endereco = endereco;
     }
-
+    
     public void adicionarFicha(Fichas ficha) {
         this.fichas.add(ficha);
     }
@@ -48,5 +54,12 @@ public class Cliente {
     public ArrayList<Fichas> getFichas() {
         return fichas;
     }
+    
+    
+    @Override
+    public String toString() {
+        return  "Nome:" + nome + "\n Idade:" + idade + "\n CPF:" + CPF + "\n Endereco:" + endereco + "\n Fichas:\n" + fichas;
+    }
+    
 }
 

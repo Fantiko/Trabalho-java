@@ -27,4 +27,9 @@ public class Fichas {
         return exercicios;
     }
 
+    @Override
+    public String toString() {
+        return  fichaNome + "\n Exercicios:" + exercicios;
+    }
+    
 }
