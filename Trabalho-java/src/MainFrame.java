@@ -67,6 +67,7 @@ public class MainFrame {
         mainFrame.add(btnBuscarCliente);
         mainFrame.add(sair);
         mainFrame.setVisible(true);
+        mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
 }

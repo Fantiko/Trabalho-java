@@ -29,7 +29,7 @@ public class Fichas {
 
     @Override
     public String toString() {
-        return "\n\t" + fichaNome+ ": " + "\n Exercicios:" + exercicios;
+        return "\n  " + fichaNome+ ": " + "\n Exercicios:" + exercicios;
     }
     
 }
