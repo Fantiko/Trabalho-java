@@ -58,7 +58,7 @@ public class Cliente {
     
     @Override
     public String toString() {
-        return  "Nome:" + nome + "\n Idade:" + idade + "\n CPF:" + CPF + "\n Endereco:" + endereco + "\n Fichas:\n" + fichas;
+        return  "Nome:" + nome + "\n Idade:" + idade + "\n CPF:" + CPF + "\n Endereco:" + endereco + "\n Fichas:\n" + fichas + "\n";
     }
     
 }

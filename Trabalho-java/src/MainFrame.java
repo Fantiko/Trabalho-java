@@ -11,7 +11,7 @@ import javax.swing.*;
  *
  * @author jvmfs
  */
-public class Frame {
+public class MainFrame {
 
     private static JFrame mainFrame = new JFrame("Academia");
 
@@ -28,6 +28,7 @@ public class Frame {
         btnCadastrarCliente.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                C
                 cadastrarCliente();
             }
 
@@ -242,6 +243,8 @@ public class Frame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 mainFrame.dispose();
+                SalvarEmArquivo save = new SalvarEmArquivo(clientes);
+                save.salvar();
             }
         });
         mainFrame.add(btnCadastrarCliente);

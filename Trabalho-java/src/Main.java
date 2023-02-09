@@ -17,7 +17,7 @@ public class Main {
     
 
     public static void main(String[] args) {
-       Frame academia = new Frame();
+       MainFrame academia = new MainFrame();
        academia.exec(clientes);
     }
 }
