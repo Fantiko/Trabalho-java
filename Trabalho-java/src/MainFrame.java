@@ -6,10 +6,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.*;
 
-/**
- *
- * @author jvmfs
- */
+
 public class MainFrame {
 
     private static JFrame mainFrame = new JFrame("Academia");
@@ -69,5 +66,4 @@ public class MainFrame {
         mainFrame.setVisible(true);
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
-
 }

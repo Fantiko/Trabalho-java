@@ -4,15 +4,6 @@ import java.awt.event.*;
 import java.util.ArrayList;
 import javax.swing.*;
 
-
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-/**
- *
- * @author jvmfs
- */
 public class BuscarCliente {
 
     public void buscarCliente(ArrayList<Cliente> clientes) {
@@ -51,5 +42,4 @@ public class BuscarCliente {
         buscarClienteFrame.add(okBtn);
         buscarClienteFrame.setVisible(true);
     }
-
 }

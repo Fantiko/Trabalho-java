@@ -6,14 +6,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import javax.swing.*;
 
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-/**
- *
- * @author jvmfs
- */
+
 public class CadastrarCliente {
 
     public void cadastrarCliente(ArrayList<Cliente> clientes) {
@@ -89,7 +82,6 @@ public class CadastrarCliente {
                 frameCadastrarFichas.setVisible(true);
             }
         });
-
         frameCadastrarCliente.add(nomeLabel);
         frameCadastrarCliente.add(nomeField);
         frameCadastrarCliente.add(idadeLabel);
