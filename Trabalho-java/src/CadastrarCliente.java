@@ -3,6 +3,7 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Arrays;
 import javax.swing.*;
 
 /*
@@ -56,5 +57,49 @@ public class CadastrarCliente {
                 frameCadastrarCliente.dispose();
             }
         });
+        addFicha.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JFrame frameCadastrarFichas = new JFrame("Cadastrar Ficha");
+                frameCadastrarFichas.setLayout(new GridLayout(3, 2));
+                frameCadastrarFichas.setSize(400, 400);
+                frameCadastrarFichas.setLocation(700, 400);
+
+                JLabel nomeFichaLabel = new JLabel("Nome da Ficha: ");
+                JTextField nomeFichaField = new JTextField();
+                JLabel exerciciosLabel = new JLabel("Exercicios (separados por vírgula: ");
+                JTextField exerciciosField = new JTextField();
+                JButton btnInserir = new JButton("OK");
+                btnInserir.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        String nome = nomeFichaField.getText();
+                        ArrayList<String> exercicios = new ArrayList<String>(Arrays.asList(exerciciosField.getText().split(",")));
+                        Fichas ficha = new Fichas(nome, exercicios);
+
+                        cliente.getFichas().add(ficha);
+                        frameCadastrarFichas.dispose();
+                    }
+                });
+                frameCadastrarFichas.add(nomeFichaLabel);
+                frameCadastrarFichas.add(nomeFichaField);
+                frameCadastrarFichas.add(exerciciosLabel);
+                frameCadastrarFichas.add(exerciciosField);
+                frameCadastrarFichas.add(btnInserir);
+                frameCadastrarFichas.setVisible(true);
+            }
+        });
+
+        frameCadastrarCliente.add(nomeLabel);
+        frameCadastrarCliente.add(nomeField);
+        frameCadastrarCliente.add(idadeLabel);
+        frameCadastrarCliente.add(idadeField);
+        frameCadastrarCliente.add(cpfLabel);
+        frameCadastrarCliente.add(cpfField);
+        frameCadastrarCliente.add(enderecoLabel);
+        frameCadastrarCliente.add(enderecoField);
+        frameCadastrarCliente.add(addFicha);
+        frameCadastrarCliente.add(btnOk);
+        frameCadastrarCliente.setVisible(true);
     }
 }
