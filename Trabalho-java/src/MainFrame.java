@@ -1,14 +1,10 @@
-
-
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.*;
 
-
 public class MainFrame {
-
     private static JFrame mainFrame = new JFrame("Academia");
 
     public void exec(ArrayList<Cliente> clientes) {
@@ -54,8 +50,6 @@ public class MainFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 mainFrame.dispose();
-                SalvarEmArquivo save = new SalvarEmArquivo(clientes);
-                save.salvar();
             }
         });
         mainFrame.add(btnCadastrarCliente);

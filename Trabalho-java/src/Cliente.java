@@ -3,14 +3,14 @@ import java.util.ArrayList;
 public class Cliente {
     private String nome;
     private int idade;
-    private String CPF;
+    private String numero;
     private String endereco;
     private ArrayList<Fichas> fichas = new ArrayList<Fichas>();
     
-    public void setaTudo(String nome, int idade, String CPF, String endereco){
+    public void setaTudo(String nome, int idade, String numero, String endereco){
         this.nome = nome;
         this.idade = idade;
-        this.CPF = CPF;
+        this.numero = numero;
         this.endereco = endereco;
     }
     
@@ -26,8 +26,8 @@ public class Cliente {
         return idade;
     }
 
-    public String getCPF() {
-        return CPF;
+    public String getNumero() {
+        return numero;
     }
 
     public String getEndereco() {
@@ -41,7 +41,11 @@ public class Cliente {
     
     @Override
     public String toString() {
-        return  "Nome:" + nome + "\n Idade:" + idade + "\n CPF:" + CPF + "\n Endereco:" + endereco + "\n Fichas:\n" + fichas + "\n";
+        StringBuilder aux = new StringBuilder();;
+        for(Fichas f :fichas){
+            aux.append(f.toString());
+        }
+        return  "Nome: " + nome + "\nIdade: " + idade + "\nNumero: " + numero + "\nEndereco: " + endereco + "\nFichas" + aux.toString() + "\n";
     }
     
 }

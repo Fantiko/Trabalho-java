@@ -1,5 +1,7 @@
 import java.util.ArrayList;
 
+//João Victor Mascarenhas De Faria Santos
+//Kaio Stefan Campos Nunes
 
 public class Main {
     private static final ArrayList<Cliente> clientes = new ArrayList<Cliente>();

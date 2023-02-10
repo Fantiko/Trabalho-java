@@ -20,7 +20,11 @@ public class Fichas {
 
     @Override
     public String toString() {
-        return "\n  " + fichaNome+ ": " + "\n Exercicios:" + exercicios;
+        StringBuilder aux = new StringBuilder();;
+        for(String f :exercicios){
+            aux.append("-").append(f).append("\n");
+        }
+        return "\nNome da Ficha:    " + fichaNome + "\n Exercicios:\n" + aux.toString();
     }
     
 }

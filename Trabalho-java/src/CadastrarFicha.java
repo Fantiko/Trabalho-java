@@ -25,28 +25,35 @@ public class CadastrarFicha {
         btnOk.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String nome = nomeFichaField.getText();
-                ArrayList<String> exercicios = new ArrayList<String>(Arrays.asList(exerciciosField.getText().split(",")));
-                Fichas ficha = new Fichas(nome, exercicios);
-
-                int clienteIndex = -1;
-                String nomeCliente = clienteBuscaField.getText();
-                for (int i = 0; i < clientes.size(); i++) {
-                    if (clientes.get(i).getNome().equals(nomeCliente)) {
-                        clienteIndex = i;
-                        break;
+                try {
+                    if (clienteBuscaField.getText().equals("") || nomeFichaField.getText().equals("") || exerciciosField.getText().equals("")) {
+                        throw new Exception("Nenhum dos campos pode estar vazio");
                     }
-                }
+                    String nome = nomeFichaField.getText();
+                    ArrayList<String> exercicios = new ArrayList<String>(Arrays.asList(exerciciosField.getText().split(",")));
+                    Fichas ficha = new Fichas(nome, exercicios);
 
-                if (clienteIndex != -1) {
-                    clientes.get(clienteIndex).getFichas().add(ficha);
-                    JOptionPane.showMessageDialog(frameCadastrarFichas, "Fichas cadastrado com sucesso!");
-                } else {
-                    //erro
-                    JOptionPane.showMessageDialog(frameCadastrarFichas, "Falha ao cadastrar a ficha, individuo nao encontrado!");
-                }
+                    int clienteIndex = -1;
+                    String nomeCliente = clienteBuscaField.getText();
+                    for (int i = 0; i < clientes.size(); i++) {
+                        if (clientes.get(i).getNome().equals(nomeCliente)) {
+                            clienteIndex = i;
+                            break;
+                        }
+                    }
 
-                frameCadastrarFichas.dispose();
+                    if (clienteIndex != -1) {
+                        clientes.get(clienteIndex).getFichas().add(ficha);
+                        JOptionPane.showMessageDialog(frameCadastrarFichas, "Fichas cadastrado com sucesso!");
+                    } else {
+                        //erro
+                        JOptionPane.showMessageDialog(frameCadastrarFichas, "Falha ao cadastrar a ficha, individuo nao encontrado!");
+                    }
+
+                    frameCadastrarFichas.dispose();
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(null, ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+                }
             }
         });
         frameCadastrarFichas.add(clienteBuscaLabel);
